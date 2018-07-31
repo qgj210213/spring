@@ -1,7 +1,8 @@
 package com.boot.entity;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
    * 实体类
@@ -9,7 +10,9 @@ import lombok.NoArgsConstructor;
    *
    */
 @NoArgsConstructor
-@Data
+//@Data
+@Getter
+@Setter
 public class Person {
   //ID
   //  @Id
