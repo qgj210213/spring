@@ -107,7 +107,29 @@ public class PersonBatchConfiguration {
         .build();
   }
   // end::jobstep[]
+//------------------------------------------------------------------------------
+  @Bean
+  public Job importUserJobTwo(@Qualifier("step2") Step s1,
+      JobExecutionListener listener) {
+    return jobBuilderFactory.get("importUserJobTwo")
+        .incrementer(new RunIdIncrementer())
+        .listener(listener)
+        .flow(s1)
+        .end()
+        .build();
+  }
 
+  @Bean
+  public Step step2(ItemReader<Person> reader,
+      ItemWriter<Person> writer, ItemProcessor<Person, Person> processor) {
+    return stepBuilderFactory.get("step2")
+        .<Person, Person> chunk(10)
+        .reader(reader)
+        .processor(processor)
+        .writer(writer)
+        .build();
+  }
+  //--------------------------------------------------------------------
   @Bean
   public JdbcTemplate jdbcTemplate(DataSource dataSource) {
     return new JdbcTemplate(dataSource);

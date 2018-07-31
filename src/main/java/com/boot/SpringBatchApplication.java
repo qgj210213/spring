@@ -43,7 +43,13 @@ public class SpringBatchApplication {
                 .toJobParameters();
         System.out.println("qgj excute JOB Start--------------------------- ");
         jobLauncher.run(ctx.getBean("importUserJob", Job.class), jobParameters);
-        System.out.println("qgj excute JOB end  --------------------------- ");
+        System.out.println("qgj excute JOB Two  --------------------------- ");
+        jobLauncher.run(ctx.getBean("importUserJobTwo", Job.class), jobParameters);
+        System.out.println("qgj excute JOB Three  --------------------------- ");
+        jobLauncher.run(ctx.getBean("importUserJobThree", Job.class), jobParameters);
+        System.out.println("qgj excute JOB End--------------------------- ");
+
+
 
     }
 }
